@@ -8,8 +8,8 @@ public class FileManager {
     public FileManager(String fileName) {
         this.filePath = new File(fileName);
 
-        if (!this.filePath.exists())
-            throw new InvalidFileException("No such file or directory in " + this.filePath.toString());
+        if (!this.filePath.exists() || !this.filePath.isFile() || !this.filePath.canRead())
+            throw new InvalidFileException("Impossible to open or read the file indicated" + this.filePath.toString());
     }
 
     public String readString() {
