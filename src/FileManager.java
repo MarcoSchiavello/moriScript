@@ -1,4 +1,4 @@
-import exeptions.InvalidFileException;
+import exceptions.InvalidFileException;
 
 import java.io.*;
 
