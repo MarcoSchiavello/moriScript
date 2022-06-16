@@ -83,19 +83,38 @@ public class Lexer {
     }
 
     public List<Token> process() {
-        List<Token> tokens  = new ArrayList<Token>();
+        List<Token> tokens  = new ArrayList<>();
         StringBuffer buffer = new StringBuffer();
 
         for (; _Position < _Code.length(); advance()) {
-            if (Character.isAlphabetic(_CurrentChar) || Character.isDigit(_CurrentChar))
+            if (!buffer.isEmpty()) {
+                if (Character.isDigit(buffer.charAt(0)) && Character.isDigit(_CurrentChar)) {
+                    buffer.append(_CurrentChar);
+                    continue;
+                }
+
+                if (!Character.isAlphabetic(buffer.charAt(0)) && Character.isAlphabetic(_CurrentChar)) {
+                    endOfToken(tokens, buffer);
+                    continue;
+                }
+
+                if (Character.isDigit(_CurrentChar)) {
+                    endOfToken(tokens, buffer);
+                    continue;
+                }
+            }
+
+            if (Character.isAlphabetic(_CurrentChar)) {
                 buffer.append(_CurrentChar);
-            else if (_CurrentChar == '"') {
-                endOfToken(tokens, buffer);
+                continue;
+            }
+
+            endOfToken(tokens, buffer);
+
+            if (_CurrentChar == '"') {
                 endOfToken(tokens, collectString());
                 advance();
                 buffer.append(_CurrentChar);
-            } else {
-                endOfToken(tokens, buffer);
             }
         }
 

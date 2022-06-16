@@ -11,7 +11,7 @@ public class Main {
         List<Token> tokens = mLexer.process();
 
         for (Token t : tokens) {
-            System.out.println(t);
+            System.out.println(t + "\n");
         }
 
     }
