@@ -46,7 +46,7 @@ public class Lexer {
         if (buffer.isEmpty())
             return TokenType.Bad;
 
-        if (_Match.keySet().contains(buffer.toString()))
+        if (_Match.containsKey(buffer.toString()))
             return _Match.get(buffer.toString());
 
         if (Character.isAlphabetic(buffer.charAt(0)))
