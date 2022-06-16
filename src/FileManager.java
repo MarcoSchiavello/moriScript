@@ -18,7 +18,7 @@ public class FileManager {
             String line;
 
             while((line = fileReader.readLine()) != null) {
-                fileString += (line + "\n");
+                fileString += (line + " ");
             }
 
             return fileString.trim();
