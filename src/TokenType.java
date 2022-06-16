@@ -4,5 +4,12 @@ public enum TokenType {
     Integer,
     LParen,
     RParen,
+    LScope,
+    RScope,
+    Function,
+    Return,
+    Assign,
+    If,
+    Compare,
     Bad
 }

@@ -1,3 +1,8 @@
-discorsodimussolini(122222)
-discorsodimussolini("Combattenti")
-discorsodimussolini("Ambasciatori")
+fdixsugdix pastaconlasalsa() {
+    discorsodimussolini(1)
+    discorsodimussolini("Combattenti")
+
+    condizionediif (1 == 2) {
+        a = 3
+    }
+}

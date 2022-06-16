@@ -17,6 +17,14 @@ public class Lexer {
 
         _Match.put("(", TokenType.LParen);
         _Match.put(")", TokenType.RParen);
+        _Match.put("{", TokenType.LScope);
+        _Match.put("}", TokenType.RScope);
+
+        _Match.put("fdixsugdix", TokenType.Function);
+
+        _Match.put("condizionediif", TokenType.If);
+        _Match.put("=", TokenType.Assign);
+        _Match.put("==", TokenType.Compare);
     }
 
     private void update() {
