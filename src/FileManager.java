@@ -16,6 +16,7 @@ public class FileManager {
         try (BufferedReader fileReader = new BufferedReader(new FileReader(this.filePath))) {
             String fileString = "";
             String line;
+
             while((line = fileReader.readLine()) != null) {
                 fileString += (line + "\n");
             }
