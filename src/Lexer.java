@@ -63,6 +63,11 @@ public class Lexer {
 
     private void push(List<Token> tokens, StringBuffer buffer) {
         if (!buffer.isEmpty()) {
+            if (Character.isSpaceChar(buffer.charAt(0))) {
+                buffer.delete(0, buffer.length());
+                return;
+            }
+
             tokens.add(new Token(toTokenType(buffer), buffer.toString()));;
             buffer.delete(0, buffer.length());
         }
@@ -90,6 +95,10 @@ public class Lexer {
             buffer.append(_CurrentChar);
     }
 
+    private boolean tokenExists(StringBuffer buffer) {
+        return _Match.containsKey(buffer.toString() + _CurrentChar) || buffer.isEmpty();
+    }
+
     public List<Token> process() {
         List<Token> tokens  = new ArrayList<>();
         StringBuffer buffer = new StringBuffer();
@@ -113,6 +122,11 @@ public class Lexer {
             }
 
             if (Character.isAlphabetic(_CurrentChar)) {
+                buffer.append(_CurrentChar);
+                continue;
+            }
+
+            if (tokenExists(buffer)) {
                 buffer.append(_CurrentChar);
                 continue;
             }
