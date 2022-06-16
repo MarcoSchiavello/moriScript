@@ -113,7 +113,6 @@ public class Lexer {
 
             if (_CurrentChar == '"') {
                 endOfToken(tokens, collectString());
-                advance();
                 buffer.append(_CurrentChar);
             }
         }
