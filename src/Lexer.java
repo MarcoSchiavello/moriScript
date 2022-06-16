@@ -71,14 +71,14 @@ public class Lexer {
         }
 
         buffer.append(_CurrentChar);
-        advance(2);
+        advance(1);
         return buffer;
     }
 
     private void endOfToken(List<Token> tokens, StringBuffer buffer) {
         push(tokens, buffer);
 
-        if (!Character.isSpaceChar(_CurrentChar))
+        if (!Character.isSpaceChar(_CurrentChar) && _CurrentChar != '"')
             buffer.append(_CurrentChar);
     }
 
@@ -90,15 +90,16 @@ public class Lexer {
             if (Character.isAlphabetic(_CurrentChar) || Character.isDigit(_CurrentChar))
                 buffer.append(_CurrentChar);
             else if (_CurrentChar == '"') {
-                push(tokens, collectString());
                 endOfToken(tokens, buffer);
-            }
-            else if (_CurrentChar == '\n')
-                buffer.delete(0, buffer.length());
-            else {
+                endOfToken(tokens, collectString());
+                advance();
+                buffer.append(_CurrentChar);
+            } else {
                 endOfToken(tokens, buffer);
             }
         }
+
+        endOfToken(tokens, buffer);
 
         return tokens;
     }

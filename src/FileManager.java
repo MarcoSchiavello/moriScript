@@ -21,7 +21,7 @@ public class FileManager {
                 fileString += (line + "\n");
             }
 
-            return fileString;
+            return fileString.trim();
         } catch (IOException e) {
             return null;
         }
