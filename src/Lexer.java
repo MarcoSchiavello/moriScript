@@ -21,10 +21,21 @@ public class Lexer {
         _Match.put("}", TokenType.RScope);
 
         _Match.put("fdixsugdix", TokenType.Function);
+        _Match.put("metto2", TokenType.Return);
+        _Match.put("chiamatalgiudice", TokenType.FunctionCall);
 
         _Match.put("condizionediif", TokenType.If);
+        _Match.put("egiziani", TokenType.Elif);
+        _Match.put("condizionedielse", TokenType.Else);
+        _Match.put("impegno", TokenType.Try);
+        _Match.put("nonvedoragionamento", TokenType.Catch);
+
         _Match.put("=", TokenType.Assign);
         _Match.put("==", TokenType.Compare);
+        _Match.put("+", TokenType.Sum);
+        _Match.put("-", TokenType.Subtract);
+        _Match.put("*", TokenType.Multiply);
+        _Match.put("/", TokenType.Divide);
     }
 
     private void update() {

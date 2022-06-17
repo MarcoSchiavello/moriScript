@@ -2,7 +2,7 @@ fdixsugdix pastaconlasalsa() {
     discorsodimussolini(1)
     discorsodimussolini("Combattenti")
 
-    condizionediif (1 == 2) {
+    condizionediif ((1+2)/2 == 2) {
         a = 3
     }
 }
