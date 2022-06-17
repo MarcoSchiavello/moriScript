@@ -8,7 +8,7 @@ public class Lexer {
     private int _Position;
     private char _CurrentChar;
     private StringBuffer buffer;
-    List<Token> tokens;
+    private List<Token> tokens;
 
     private final Map<String, TokenType> _Match = new HashMap<>();
 
