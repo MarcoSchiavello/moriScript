@@ -13,6 +13,5 @@ public class Main {
         for (Token t : tokens) {
             System.out.println(t + "\n");
         }
-
     }
 }
