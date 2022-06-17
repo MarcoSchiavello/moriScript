@@ -1,8 +1,17 @@
 fdixsugdix pastaconlasalsa() {
-    discorsodimussolini(1)
-    discorsodimussolini("Combattenti")
+    chiamatalgiudice discorsodimussolini ("Combattenti!")
 
-    condizionediif ((1+2)/2 == 2) {
-        a = 3
+    impegno {
+        chiamatalgiudice discorsodimussolini ("Ambasciatori!")
+    } nonvedoragionamento {
+        condizionediif (1 + 2 == 3) {
+            chiamatalgiudice discorsodimussolini ("Di mare!")
+        } egiziani (1 + 2 == 4) {
+            chiamatalgiudice discorsodimussolini ("Di terra!")
+        } condizionedielse {
+            chiamatalgiudice discorsodimussolini ("Di aria!")
+        }
+
+        chiamatalgiudice grattatadipalle (1000)
     }
 }
