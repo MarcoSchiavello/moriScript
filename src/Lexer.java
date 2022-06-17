@@ -7,16 +7,16 @@ public class Lexer {
     private String _Code;
     private int _Position;
     private char _CurrentChar;
-    private StringBuffer buffer;
-    private List<Token> tokens;
+    private StringBuffer _Buffer;
+    private List<Token> _Tokens;
 
     private final Map<String, TokenType> _Match = new HashMap<>();
 
     public Lexer(String code) {
         _Code     = code;
         _Position = 0;
-        buffer = new StringBuffer();
-        tokens = new ArrayList<>();
+        _Buffer = new StringBuffer();
+        _Tokens = new ArrayList<>();
         update();
 
         _Match.put("(", TokenType.LParen);
@@ -57,7 +57,7 @@ public class Lexer {
         update();
     }
 
-    private void clearBuffer() { buffer.delete(0, buffer.length()); }
+    private void clearBuffer() { _Buffer.delete(0, _Buffer.length()); }
 
     private TokenType toTokenType(StringBuffer buffer) {
         if (buffer.isEmpty())
@@ -77,7 +77,7 @@ public class Lexer {
 
         return TokenType.Bad;
     }
-    private TokenType toTokenType() { return toTokenType(this.buffer); }
+    private TokenType toTokenType() { return toTokenType(this._Buffer); }
 
     private void push(StringBuffer buffer) {
         if (!buffer.isEmpty()) {
@@ -86,11 +86,11 @@ public class Lexer {
                 return;
             }
 
-            tokens.add(new Token(toTokenType(buffer), buffer.toString()));
+            _Tokens.add(new Token(toTokenType(buffer), buffer.toString()));
             clearBuffer();
         }
     }
-    private void push() { push(this.buffer); }
+    private void push() { push(this._Buffer); }
 
     private StringBuffer collectString() {
         StringBuffer buffer = new StringBuffer();
@@ -113,22 +113,22 @@ public class Lexer {
         if (!Character.isSpaceChar(_CurrentChar) && _CurrentChar != '"')
             buffer.append(_CurrentChar);
     }
-    private void endOfToken() { endOfToken(this.buffer); }
+    private void endOfToken() { endOfToken(this._Buffer); }
 
     private boolean tokenExists(StringBuffer buffer) {
         return _Match.containsKey(buffer.toString() + _CurrentChar) || buffer.isEmpty();
     }
-    private boolean tokenExists() { return tokenExists(this.buffer); }
+    private boolean tokenExists() { return tokenExists(this._Buffer); }
 
     public List<Token> process() {
         for (; _Position < _Code.length(); advance()) {
-            if (!buffer.isEmpty()) {
-                if (Character.isDigit(buffer.charAt(0)) && Character.isDigit(_CurrentChar)) {
-                    buffer.append(_CurrentChar);
+            if (!_Buffer.isEmpty()) {
+                if (Character.isDigit(_Buffer.charAt(0)) && Character.isDigit(_CurrentChar)) {
+                    _Buffer.append(_CurrentChar);
                     continue;
                 }
 
-                if (!Character.isAlphabetic(buffer.charAt(0)) && Character.isAlphabetic(_CurrentChar)) {
+                if (!Character.isAlphabetic(_Buffer.charAt(0)) && Character.isAlphabetic(_CurrentChar)) {
                     endOfToken();
                     continue;
                 }
@@ -140,12 +140,12 @@ public class Lexer {
             }
 
             if (Character.isAlphabetic(_CurrentChar)) {
-                buffer.append(_CurrentChar);
+                _Buffer.append(_CurrentChar);
                 continue;
             }
 
-            if (tokenExists(buffer)) {
-                buffer.append(_CurrentChar);
+            if (tokenExists(_Buffer)) {
+                _Buffer.append(_CurrentChar);
                 continue;
             }
 
@@ -153,12 +153,12 @@ public class Lexer {
 
             if (_CurrentChar == '"') {
                 endOfToken(collectString());
-                buffer.append(_CurrentChar);
+                _Buffer.append(_CurrentChar);
             }
         }
 
         endOfToken();
 
-        return tokens;
+        return _Tokens;
     }
 }
