@@ -1,4 +1,5 @@
 import jdk.jshell.execution.Util;
+import nodes.Node;
 
 import java.util.List;
 
@@ -13,5 +14,8 @@ public class Main {
         for (Token t : tokens) {
             System.out.println(t + "\n");
         }
+
+        Parser mParser = new Parser(tokens);
+        List<Node> nodes = mParser.parse();
     }
 }
