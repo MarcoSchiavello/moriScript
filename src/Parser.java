@@ -7,8 +7,8 @@ public class Parser {
     private List<Token> _Tokens;
     private List<Node> _Nodes = new ArrayList<>();
 
-    public Parser(List<Token> cst) {
-        _Tokens = cst;
+    public Parser(List<Token> tokens) {
+        _Tokens = tokens;
     }
 
     public List<Node> parse() {
