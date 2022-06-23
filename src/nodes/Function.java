@@ -17,4 +17,9 @@ public class Function extends Node {
         _Name  = name;
         _Scope = new nodes.Scope();
     }
+
+    @Override
+    public String toString() {
+        return "Function Node:\n\tName" + _Name;
+    }
 }

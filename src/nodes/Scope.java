@@ -19,4 +19,9 @@ public class Scope extends Node {
     public void addNode(Node node) {
         _Nodes.add(node);
     }
+
+    @Override
+    public String toString() {
+        return "Scope Node";
+    }
 }
